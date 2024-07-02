@@ -4,6 +4,7 @@ import { db } from '../firebase/firebase'; // Adjust the path to your firebase c
 import { styles } from '../utils/styles';
 import YoutubeEmbed from './youtubeEmbed';
 import VideoPlayer from './videoPlayer';
+import { Loader2 } from "lucide-react";
 // Import the VideoPlayer component
 
 interface Post {
@@ -47,12 +48,14 @@ const PostCard: React.FC<Post> = ({ title, text, img, createdAt, yturl, videoUrl
 
 const Posts: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
-
+  const [isLoading, setIsLoading] = useState(false)
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        setIsLoading(true)
         const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'));
         const querySnapshot = await getDocs(q);
+        setIsLoading(false)
         const postsData = querySnapshot.docs.map(doc => {
           const data = doc.data();
           return {
@@ -62,17 +65,25 @@ const Posts: React.FC = () => {
         });
         setPosts(postsData);
       } catch (error) {
+        setIsLoading(false)
         console.error('Error fetching posts:', error);
       }
     };
     fetchPosts();
   }, []);
+  console.log(isLoading);
 
   return (
     <div>
-      {posts.map((post, index) => (
-        <PostCard key={index} {...post} />
-      ))}
+      {isLoading ? (
+        <div className="flex justify-center items-center h-24">
+          <Loader2 className="animate-spin text-sky-500" />
+        </div>
+      ) :
+        posts.map((post, index) => (
+          <PostCard key={index} {...post} />
+        ))
+      }
     </div>
   );
 };

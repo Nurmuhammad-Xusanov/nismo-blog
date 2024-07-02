@@ -6,6 +6,7 @@ import { FaArrowUp } from "react-icons/fa6";
 
 
 
+
 const Home: React.FC = () => {
     const handleScrollTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' })
