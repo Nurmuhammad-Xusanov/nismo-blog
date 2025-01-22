@@ -15,7 +15,7 @@ Here're some of the project's best features:
 *   Real-time database 🔗
 *   Add posts
 *   Youtube Integration
-*   Post video/audi/photo
+*   Post video/audio/photo
 *   Real-time chat 
 *   24/7 online
 
@@ -42,6 +42,6 @@ Technologies used in the project:
 
 *   ReactJS
 *   TypeScript
-*   Firbase
-*   TailwindCSS
+*   Firebase
+*   Tailwind CSS
 
