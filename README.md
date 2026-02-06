@@ -45,3 +45,5 @@ Technologies used in the project:
 *   Firebase
 *   Tailwind CSS
 
+idk the env file, guess it on your own
+
